@@ -134,3 +134,13 @@ obj1.value = 20;
 
 obj2;
 
+
+=================== When to use arrays =====================
+
+PROS:
+    fast lookups via index
+    fast adding/removing the end of an array
+
+CONS:
+    slow inserting/deleting at beginning of array due to needing to shift indexs
+    fixed size => use dynamic arrays

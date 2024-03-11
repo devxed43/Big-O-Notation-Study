@@ -1,0 +1,48 @@
+Hash Function generates an encrypted code // O(1)
+If one character changes, an entirely new encryption is generated
+
+PRO:
+    Fast data access
+    Locates value via key
+
+Hash Tables: 
+    Insert O(1) -- fast Insert => key helps locating
+    Lookup O(1) -- fast look up => key helps locating
+    Delete O(1) -- fast delete => key helps locating
+    Search O(1) -- fast search => key helps locating
+
+Hash Collisions: 
+    when two users get stored in the same shelf/bucket.
+    Collisions are inevitable.
+
+    A collision is O(n/k)
+    k is the size of hash Table
+    O(n/k) becomes => O(n)
+
+How do we store both users in the same bucket?
+    Linked Lists
+
+
+Map: 
+    allows to save any data type as the key
+    maintains insertion order
+
+Set: 
+Only stores keys, NO values
+
+
+Arrays VS Hash Tables: 
+    Hash Tables are great for quick access of values. it's a labeled shelf
+    Arrays is merely a simple list of items we have to go through all of the list
+    Both allow quick look up. Array is labled by index. Hash Table is labled by [key, value]
+
+Hash Tables Pros and Cons:
+Pros: 
+    Hash Tables are used to optimize Quadratic Time(nested loops) to Linear Time. O(n^2) => O(n)
+    Fast Lookup
+    Fast Inserts
+    Flexible keys
+Cons:
+    Unordered => randomly placed in shelves
+    Slow key iteration. Have to go thru entire memory space to grab all the keys
+    
