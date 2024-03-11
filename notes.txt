@@ -1,0 +1,117 @@
+app1.js notes:
+
+collection of numbers
+find matching pair that is equal to sum given => 8
+[1, 2, 3, 9] = 8
+[1, 2, 4, 4] = 8
+
+question: 
+    so you're looking for a pair of numbers that add up to 8?
+    so in this case there isn't a pair of numbers that add up to 8
+    and in this case, there is a pair of numbers that do add up to 8
+    so case one is no
+    so case two is yes
+    
+    how are these numbers given? can I assume they are in memory? in an array? 
+    are they in order? ascending order? descending order? 
+    what about repeating elements? can the same number occur twice?
+    are the numbers integers or floating points? negatives? positives?
+    
+    so my brute force appraoch is to compare every single possible pair
+    where I can do two nested for loops where the first loop tests i and the nested loop tests j
+    ofcourse this is quadratic time and is very ineffecient
+
+    so when I have a number, I am looking for another number that will fulfill our sum request of 8
+    I can do a binary search (log n) to be more efficient, a little bit better.
+    oh that's still kind of slow? 
+    a binary search is unidirectional,
+
+    I can start with a pair of numbers to begin with and work my way from there in a DFS?
+
+    so the largest possible sum will be the last two values, 
+    the lowest possible sum will be the first two...
+
+    so I can do an elimination algorithm starting at the end and rearranging the list...
+
+    so binary search is log and it repeats for everyone element so its an n log n.
+    and in this case, I just have to scan one time and then rearrange the values in the list
+
+    so that was a non-working example, but can you explain that process in a working example?
+    (explain how it works)
+    
+
+    so do I want the pair, the indices of the pair or whether I just found it or not?
+    if you were going to return a pair, how could that become a problem if there was no pair?
+
+    building the pair would be easy, you would just return the pair
+    if i didn't have the pair, i'd need to return some sort of boolean
+    I could make a data structure that has a boolean that denotes whethere the pair is valid or not
+    
+    bool hasPairWithSum(const vector<int>& data, int sum) {
+        int low = 0; initializer
+        int high = data.size() - 1; // handles if there are no pair the following code would not run
+
+        while (low < high) {
+            if (data[low] + data[high] == sum) { 
+                return true;
+            }
+        }
+    }
+
+    but im actually going to store it in a variable int s.
+    if ( s === sum) return true;
+
+    so here's a change, the numbers are no longer sorted,
+
+    so if the first thing I do is sort them, it would be still be n log n
+    sorting is slow because it is linear
+
+    hmmm okay lets restart:
+
+    I can ask have I seen the value I need in the past? you can insert the compliment instaed of sorting
+
+    I can use a data structure that is good for lookups like a hash table.
+
+    do you need a kay in this case? 
+    no i just need a value. 
+
+    i need a hash set, how am i going to deal with the case of repeated elements?
+    if I have two fours, stopping at the first four would be wrong
+    if it adds four, and it seees four in the past, it will evaluate 
+
+    bool hasPairWithSum(c vector<int> data, int sum) {
+        unordered_set<int> comp;
+        for (int value: data) {
+            if (comp.find(value) != comp.end) 
+            return true;
+        comp.add(sum - value);
+        }
+        return false;
+    }
+
+    basically walk through the functionality of the function.
+    what's happening
+    why is it happening
+    how is it happening?
+    talk about issues, potentialities
+    talk about the Big O Notation, the Time Complexity, Space Complexity
+    what you would do differently if there were 10 million inputs, 
+    ask would it fit in memory? is the range of the values limited in some way?
+    you can process it in chunks, in sets, accumulate it in sets, 
+    can you do it in parallel?
+    multiple computers? multiple servers? sets of complements?
+    how would you bulk process it? 
+    make sure to process them via multiple computers in the right order
+    and properly merge them
+
+
+    EXTRA BITS: 
+    Ask for Clarification
+    Write down notes
+    Think out loud constantly
+    Test the code in real time
+
+
+Think about error checks and how you can break your code: 
+    check for false inputs, 
+    check for repeated values,

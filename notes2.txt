@@ -1,0 +1,136 @@
+DATA STRUCTURE OVERVIEW:
+
+What is a Data Structure?:
+
+    Collection of values that can have relationships between them and functions. 
+    Each has a pro and con depending on different use cases.
+    They are a file cabinet/container.
+    You can have a backpack, a refridgerator, a box, etc... 
+    --- depending on which data container is more appropriate
+    Bitcoin uses block chain === data structure. a way to hold digital currency
+    Arrays, Objects, etc...
+    
+
+Two Parts to Data Structures:
+    1. How to build them
+    2. How to use them
+
+
+
+*** HOW COMPUTERS STORE DATA **
+
+
+CPU: (Processor on a mac)
+    Runs Google Chrome
+    The CPU grabs from the storage.
+    The CPU is connected to a Memory Controller. 
+        It reads the RAM memory and writes the memory
+            It has connections to all of the shelves.
+    The CPU asks the RAM what's in shelf 0?
+
+RAM: (Memory on a mac)
+    Random Access Memory
+    You lose the memory when the computer turns off.
+    Accesses information in RAM a lot faster than storage.
+    Variables declared in a program is stored here 
+    Small scripts and other stuff is run here because it is faster
+
+    Has shelves that are numbered:
+    0|00000001 - 8 bits => Byte
+    1|00100001 - 8 bits => Byte
+    2|00000001 - 8 bits => Byte
+    3|01100001 - 8 bits => Byte
+    4|00000001 - 8 bits => Byte
+    5|00000001 - 8 bits => Byte
+    6|11000001 - 8 bits => Byte
+    7|01000001 - 8 bits => Byte
+
+STORAGE: (Flash Storage on a mac)
+    Store video files, music files, documents.
+    Storage can be a disk drive, flash drive, solid state drive.
+    Data stored here is permanent/persistent.
+    Slow.
+    Applications saved on our computers are stored here for long term
+
+CPU CACHE:
+    CPU has a small memory that stores data that is most recent.
+    LRU Cache.
+
+
+var a = 1 gets stored in the first 4 shelves
+var b = 7; gets stored in the last 4 shelves
+
+MORE BITS === MORE PROCESSING POWER OF DATA
+
+5 to the power of 100 
+6 to the power of 1000 - too large => renderes infinity
+console.log(Math.pow(5, 100));
+console.log(Math.pow(6, 1000));
+
+
+IMPORTANT AHA MOMENT:
+Math.pow(6, 1000) is too large so it renders infinity. 
+Each variable/number has a certain amount of bits, 
+those bits get stored in the RAM
+the CPU reads that storage
+A data structure is an arrangement of data. 
+It is how efficient it is stored and retrieved by the CPU. Our goal is to minimize the operations for the CPU to pull it from the RAM
+
+
+What can we do with our data structures? 
+
+Insertion - add new data
+Deletion -  remove data
+Traversal - access each item one by one
+Searching - search for item
+Sorting -   sorting the data in order
+Access -    how do we access the data?
+
+
+Array: 
+Stack:
+Queue:
+Singly-Linked List:
+Doubly-Linked List:
+Skip List:
+Hash Table:
+Bineary Search Tree:
+Cartesian Tree:
+B-Tree:
+Red-Black Tree:
+Splay Tree:
+AVL Tree:
+KD Tree:
+
+
+===================================================
+
+ARRAY: Organizes data sequentially. 
+    Lookup/Access: O(1) Constant Time => one by one
+    Push: O(1) Constant Time => one by one
+    Insert: O(n) Linear Time => depends on the input size
+    Deletion: O(n) Linear Time => depends on the input size
+
+// 4 shelves to store
+    // a in 0101010,
+    // b in 00101011,
+    // c in 01010011,
+    // d in 0101011
+
+
+STATIC VS DYNAMIC ARRAY:
+    static arrays are fixed in size. you specify the elements, etc...
+    "create an array of 7 items like a grocery list"
+    
+    dynamic arrays allow us to copy and rebuild an array in a new location with more memory. 
+        hence why they're dynamic. they're changable
+
+
+// reference type
+let obj1 = { value: 10 };
+let obj2 = obj1;
+
+obj1.value = 20;
+
+obj2;
+

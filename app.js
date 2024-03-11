@@ -47,6 +47,12 @@ DATA STRUCTURES:
 ALGORITHMS: 
     Sorting, Dynamic Programming, BFS + DFS(Searching), Recursion
 
+SPACE COMPLEXITY: 
+    O(a + b) Time Complexity
+    O(a) Space Complexity
+
+    if we are not adding variables and are just iterating over via loops aka using the data inherent, it is O(n)
+
 */
 
 // =========================  O(n) ==================================
@@ -304,116 +310,160 @@ findNemo3(everyone);
 
 // =====================================================
 
+/* Interview Question: Check if two arrays have any matching common items
+
+given 2 arrays [] [] 
+create a function () {}
+alert true yes these two arrays contain common items
+alert false no these two arrays !contain common items
+*/
+
 /* 
 
-collection of numbers
-find matching pair that is equal to sum given => 8
-[1, 2, 3, 9] = 8
-[1, 2, 4, 4] = 8
+ask will they always be arrays?
+is it possible the input might not be an array?
 
-question: 
-    so you're looking for a pair of numbers that add up to 8?
-    so in this case there isn't a pair of numbers that add up to 8
-    and in this case, there is a pair of numbers that do add up to 8
-    so case one is no
-    so case two is yes
-    
-    how are these numbers given? can I assume they are in memory? in an array? 
-    are they in order? ascending order? descending order? 
-    what about repeating elements? can the same number occur twice?
-    are the numbers integers or floating points? negatives? positives?
-    
-    so my brute force appraoch is to compare every single possible pair
-    where I can do two nested for loops where the first loop tests i and the nested loop tests j
-    ofcourse this is quadratic time and is very ineffecient
+2 params no size limit
+return boolean
 
-    so when I have a number, I am looking for another number that will fulfill our sum request of 8
-    I can do a binary search (log n) to be more efficient, a little bit better.
-    oh that's still kind of slow? 
-    a binary search is unidirectional,
+it is not the best because the big O notation is quadratic time.  
 
-    I can start with a pair of numbers to begin with and work my way from there in a DFS?
+HASH TABLES ARE A COMMON WAY TO MAKE THINGS FASTER.
+*/
 
-    so the largest possible sum will be the last two values, 
-    the lowest possible sum will be the first two...
+const arr1 = ["a", "b", "c", "x"];
+const arr2 = ["z", "y", "i"];
 
-    so I can do an elimination algorithm starting at the end and rearranging the list...
+function isMatching(arr1, arr2) {
+  //   quadratic O(n ^ 2)
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
-    so binary search is log and it repeats for everyone element so its an n log n.
-    and in this case, I just have to scan one time and then rearrange the values in the list
+/* BETTER SOLUTION: hash map/object
 
-    so that was a non-working example, but can you explain that process in a working example?
-    (explain how it works)
-    
-
-    so do I want the pair, the indices of the pair or whether I just found it or not?
-    if you were going to return a pair, how could that become a problem if there was no pair?
-
-    building the pair would be easy, you would just return the pair
-    if i didn't have the pair, i'd need to return some sort of boolean
-    I could make a data structure that has a boolean that denotes whethere the pair is valid or not
-    
-    bool hasPairWithSum(const vector<int>& data, int sum) {
-        int low = 0; initializer
-        int high = data.size() - 1; // handles if there are no pair the following code would not run
-
-        while (low < high) {
-            if (data[low] + data[high] == sum) { 
-                return true;
-            }
-        }
+     arr1 => object {
+        a: true,
+        b: true,
+        c: true,
+        x: true
     }
 
-    but im actually going to store it in a variable int s.
-    if ( s === sum) return true;
+    see if arr2[index] === obj.properties
 
-    so here's a change, the numbers are no longer sorted,
-
-    so if the first thing I do is sort them, it would be still be n log n
-    sorting is slow because it is linear
-
-    hmmm okay lets restart:
-
-    I can ask have I seen the value I need in the past? you can insert the compliment instaed of sorting
-
-    I can use a data structure that is good for lookups like a hash table.
-
-    do you need a kay in this case? 
-    no i just need a value. 
-
-    i need a hash set, how am i going to deal with the case of repeated elements?
-    if I have two fours, stopping at the first four would be wrong
-    if it adds four, and it seees four in the past, it will evaluate 
-
-    bool hasPairWithSum(c vector<int> data, int sum) {
-        unordered_set<int> comp;
-        for (int value: data) {
-            if (comp.find(value) != comp.end) 
-            return true;
-        comp.add(sum - value);
-        }
-        return false;
-    }
-
-    basically walk through the functionality of the function.
-    what's happening
-    why is it happening
-    how is it happening?
-    talk about issues, potentialities
-    talk about the Big O Notation, the Time Complexity, Space Complexity
-    what you would do differently if there were 10 million inputs, 
-    ask would it fit in memory? is the range of the values limited in some way?
-    you can process it in chunks, in sets, accumulate it in sets, 
-    can you do it in parallel?
-    multiple computers? multiple servers? sets of complements?
-    how would you bulk process it? 
-    make sure to process them via multiple computers in the right order
-    and properly merge them
-
-
-    EXTRA BITS: 
-    Ask for Clarification
-    Write down notes
-    Think out loud constantly
+    this way you simply have to loop over one array instead of 2 arrays and check it against a hash map
 
 */
+
+const arr1 = ["a", "b", "c", "x"];
+const arr2 = ["z", "y", "i"];
+
+// what if you have two of the same values
+// what if you have an [], null in the array
+// what if there's only one array?
+// have fun breaking the code and think of all errors
+// think about meaningful naming conventions
+// how can you test this function if it is not tested with two arrays? like a user object and an items array
+// where would you improve the code? what would you google?
+// how could you make the code more readable?
+// tell the user that you would google specific array methods in order to do that exact same things
+// tell them how you would modularize the code
+function containsCommonItem(arr1, arr2) {
+  // loop thru first array and create hash map where props === items in the array
+  let map = {}; // container
+  for (let i = 0; i < arr1.length; i++) {
+    if (!map[arr1[i]]) {
+      // if map a doesn't exist, lets create it
+      const item = arr1[i]; // a
+      map[item] = true;
+    }
+  }
+  console.log(map);
+
+  // loop thru second array and check if item in second array exists on created object
+  for (let j = 0; j < arr2.length; j++) {
+    if (map[arr2[j]]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+containsCommonItem(arr1, arr2);
+// what if you pass 0 here instead of arr2?
+// learn a little bit about testing and how that would interact in the mix
+
+// clean readable code: GOAL TO STRIVE FOR
+
+const arr3 = ["a", "b", "c", "x"];
+const arr4 = ["z", "y", "i"];
+
+const containsCommonItems3 = (arr3, arr4) =>
+  arr3.some((item) => arr4.includes(item));
+
+// MODULARIZED VERSION:
+
+// function containsCommonItem(arr1, arr2) {
+
+//     mapArrayToObject(arr1) {
+//         let map = {};
+//         for (let i = 0; i < arr1.length; i++) {
+//           if (!map[arr1[i]]) {
+//             const item = arr1[i];
+//             map[item] = true;
+//           }
+//         }
+//         console.log(map);
+//     }
+
+//     compareArrayToObject() {
+//         for (let j = 0; j < arr2.length; j++) {
+//             if (map[arr2[j]]) {
+//               return true;
+//             }
+//           }
+//     }
+
+//     return false;
+//   }
+
+// ============================================
+
+// Naive: Quadratic Time O(n^2) very slow nested for loops
+function hasPairWithSum(arr, sum) {
+  var len = arr.length;
+  for (var i = 0; i < len - 1; i++) {
+    for (var j = i + 1; j < len; j++) {
+      if (arr[i] + arr[j] === sum) return true;
+    }
+  }
+
+  return false;
+}
+
+hasPairWithSum([6, 4, 3, 2, 1, 7], 9);
+
+// Better:
+
+function hasPairWithSum2(arr, sum) {
+  const mySet = new Set(); // Unique can't have duplicates
+  const len = arr.length; // variable len stands for the arr length
+
+  for (let i = 0; i < len; i++) {
+    // for loop over the len variable array length
+    if (mySet.has(arr[i])) {
+      // checks if the set has the iteration of the array
+      return true;
+    }
+    mySet.add(sum - arr[i]); // if the set does have... ????
+  }
+  return false;
+}
+
+hasPairWithSum2([6, 4, 3, 2, 1, 7], 9);
